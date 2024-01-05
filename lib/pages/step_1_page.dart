@@ -9,6 +9,7 @@ class Step1Page extends StatelessWidget {
     return Scaffold(
       backgroundColor: const Color(0xFF27272C),
       appBar: AppBar(
+        //remove a alteração de cor quando ocorre scroll
         surfaceTintColor: Colors.transparent,
         elevation: 0,
         backgroundColor: const Color(0xFF27272C),
@@ -32,6 +33,7 @@ class Step1Page extends StatelessWidget {
           ],
         ),
       ),
+      //Envolve o colum em um componente de scroll
       body: SingleChildScrollView(
         child: Column(
           children: [
