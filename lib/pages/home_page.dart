@@ -47,7 +47,7 @@ class HomePage extends StatelessWidget {
                     )),
                   ),
                   child: const Text(
-                    'Next step',
+                    'Sign in',
                     style: TextStyle(
                       color: Colors.white,
                       fontFamily: 'Inter',
