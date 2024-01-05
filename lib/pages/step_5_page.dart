@@ -11,6 +11,7 @@ class Step5Page extends StatelessWidget {
       backgroundColor: const Color(0xFF27272C),
       appBar: AppBar(
         elevation: 0,
+        surfaceTintColor: Colors.transparent,
         backgroundColor: const Color(0xFF27272C),
         title: Row(
           children: [
@@ -32,162 +33,165 @@ class Step5Page extends StatelessWidget {
           ],
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(24),
-            child: SingleChildScrollView(
-              scrollDirection: Axis.horizontal,
-              child: Row(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(24),
+              child: SingleChildScrollView(
+                scrollDirection: Axis.horizontal,
+                child: Row(
+                  children: [
+                    Container(
+                      width: 74.25,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),
+                        color: const Color(0xFFF49819),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 74.25,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),
+                        color: const Color(0xFFF49819),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 74.25,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),
+                        color: const Color(0xFFF49819),
+                      ),
+                    ),
+                    const SizedBox(
+                      width: 10,
+                    ),
+                    Container(
+                      width: 74.25,
+                      height: 4,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(2),
+                        color: const Color(0xFFF49819),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 24, right: 24, left: 24),
+              child: Column(
                 children: [
-                  Container(
-                    width: 74.25,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2),
-                      color: const Color(0xFFF49819),
+                  SvgPicture.asset(
+                    'assets/icons/Email.svg',
+                  ),
+                  const Text(
+                    'Your account has been\ncreated successfully',
+                    style: TextStyle(
+                      color: Color(0xFFF49819),
+                      fontSize: 26,
+                      fontFamily: 'Cabin',
+                      fontWeight: FontWeight.w700,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(right: 24, left: 24, bottom: 24),
+              child: Column(
+                children: [
+                  Text(
+                    'Check your e-mail',
+                    style: TextStyle(
+                      color: Color(0xFFC3C4C6),
+                      fontFamily: 'Cabin',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
+                  TextField(
+                    decoration: InputDecoration(
+                      hintText: 'Fulano.beltrano@gmail.com',
+                      hintStyle: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                        fontFamily: 'Cabin',
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  Container(
-                    width: 74.25,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2),
-                      color: const Color(0xFFF49819),
+                ],
+              ),
+            ),
+            const Padding(
+              padding: EdgeInsets.only(left: 24, right: 24, bottom: 24),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    'And confirm your data to validade your account.',
+                    style: TextStyle(
+                      color: Color(0xFFC3C4C6),
+                      fontFamily: 'Cabin',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(right: 24, left: 24, bottom: 127),
+              child: Column(
+                children: [
+                  const Text(
+                    'Dont receive e-mail?',
+                    style: TextStyle(
+                      color: Color(0xFFC3C4C6),
+                      fontFamily: 'Cabin',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 16,
                     ),
                   ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    width: 74.25,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2),
-                      color: const Color(0xFFF49819),
+                  const SizedBox(height: 8),
+                  OutlinedButton(
+                    onPressed: () {},
+                    style: ButtonStyle(
+                      minimumSize:
+                          MaterialStateProperty.all(const Size(327, 48)),
+                      shape: MaterialStatePropertyAll(RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(6),
+                      )),
                     ),
-                  ),
-                  const SizedBox(
-                    width: 10,
-                  ),
-                  Container(
-                    width: 74.25,
-                    height: 4,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(2),
-                      color: const Color(0xFFF49819),
+                    child: const Text(
+                      'Send again',
+                      style: TextStyle(
+                        color: Color(0xFFA5A5A9),
+                        fontFamily: 'Inter',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 16,
+                      ),
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(bottom: 24, right: 24, left: 24),
-            child: Column(
-              children: [
-                SvgPicture.asset(
-                  'assets/icons/Email.svg',
-                ),
-                const Text(
-                  'Your account has been\ncreated successfully',
-                  style: TextStyle(
-                    color: Color(0xFFF49819),
-                    fontSize: 26,
-                    fontFamily: 'Cabin',
-                    fontWeight: FontWeight.w700,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(right: 24, left: 24, bottom: 24),
-            child: Column(
-              children: [
-                Text(
-                  'Check your e-mail',
-                  style: TextStyle(
-                    color: Color(0xFFC3C4C6),
-                    fontFamily: 'Cabin',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                  ),
-                ),
-                TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Fulano.beltrano@gmail.com',
-                    hintStyle: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                      fontFamily: 'Cabin',
-                      fontWeight: FontWeight.w400,
-                    ),
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
-          const Padding(
-            padding: EdgeInsets.only(left: 24, right: 24, bottom: 24),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  'And confirm your data to validade your account.',
-                  style: TextStyle(
-                    color: Color(0xFFC3C4C6),
-                    fontFamily: 'Cabin',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 14,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.only(right: 24, left: 24, bottom: 127),
-            child: Column(
-              children: [
-                const Text(
-                  'Dont receive e-mail?',
-                  style: TextStyle(
-                    color: Color(0xFFC3C4C6),
-                    fontFamily: 'Cabin',
-                    fontWeight: FontWeight.w400,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 8),
-                OutlinedButton(
-                  onPressed: () {},
-                  style: ButtonStyle(
-                    minimumSize: MaterialStateProperty.all(const Size(327, 48)),
-                    shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(6),
-                    )),
-                  ),
-                  child: const Text(
-                    'Send again',
-                    style: TextStyle(
-                      color: Color(0xFFA5A5A9),
-                      fontFamily: 'Inter',
-                      fontWeight: FontWeight.w600,
-                      fontSize: 16,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
