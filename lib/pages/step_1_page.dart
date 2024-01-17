@@ -12,6 +12,7 @@ class Step1Page extends StatefulWidget {
 class _Step1PageState extends State<Step1Page> {
   CreateAccountStore createAccountStore = CreateAccountStore();
   final emailController = TextEditingController();
+  final passwordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -138,6 +139,7 @@ class _Step1PageState extends State<Step1Page> {
                       )),
                   const SizedBox(height: 8),
                   TextField(
+                    onChanged: createAccountStore.setEmail,
                     controller: emailController,
                     decoration: const InputDecoration(
                       hintText: 'Email',
@@ -152,21 +154,23 @@ class _Step1PageState extends State<Step1Page> {
                 ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(bottom: 24, left: 24, right: 24),
+            Padding(
+              padding: const EdgeInsets.only(bottom: 24, left: 24, right: 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Password',
+                  const Text('Password',
                       style: TextStyle(
                         color: Color(0xFFF0F0F1),
                         fontSize: 16,
                         fontFamily: 'Cabin',
                         fontWeight: FontWeight.w400,
                       )),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   TextField(
-                    decoration: InputDecoration(
+                    onChanged: createAccountStore.setPassword,
+                    controller: passwordController,
+                    decoration: const InputDecoration(
                       hintText: 'At least 8 caracters',
                       hintStyle: TextStyle(
                         color: Color(0xFF57585E),
@@ -244,7 +248,9 @@ class _Step1PageState extends State<Step1Page> {
               padding: const EdgeInsets.all(24),
               child: TextButton(
                 onPressed: () {
-                  Modular.to.navigate('/signup/step2');
+                  createAccountStore.isValidForm
+                      ? Modular.to.navigate('/signup/step2')
+                      : null;
                 },
                 style: ButtonStyle(
                   minimumSize: const MaterialStatePropertyAll(Size(327, 48)),

@@ -9,6 +9,28 @@ part of 'create_account_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$CreateAccountStore on _CreateAccountStore, Store {
+  Computed<bool>? _$isEmailValidComputed;
+
+  @override
+  bool get isEmailValid =>
+      (_$isEmailValidComputed ??= Computed<bool>(() => super.isEmailValid,
+              name: '_CreateAccountStore.isEmailValid'))
+          .value;
+  Computed<bool>? _$isPasswordValidComputed;
+
+  @override
+  bool get isPasswordValid =>
+      (_$isPasswordValidComputed ??= Computed<bool>(() => super.isPasswordValid,
+              name: '_CreateAccountStore.isPasswordValid'))
+          .value;
+  Computed<bool>? _$isValidFormComputed;
+
+  @override
+  bool get isValidForm =>
+      (_$isValidFormComputed ??= Computed<bool>(() => super.isValidForm,
+              name: '_CreateAccountStore.isValidForm'))
+          .value;
+
   late final _$emailAtom =
       Atom(name: '_CreateAccountStore.email', context: context);
 
@@ -56,10 +78,24 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
   }
 
   @override
+  void setPassword(String value) {
+    final _$actionInfo = _$_CreateAccountStoreActionController.startAction(
+        name: '_CreateAccountStore.setPassword');
+    try {
+      return super.setPassword(value);
+    } finally {
+      _$_CreateAccountStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 email: ${email},
-password: ${password}
+password: ${password},
+isEmailValid: ${isEmailValid},
+isPasswordValid: ${isPasswordValid},
+isValidForm: ${isValidForm}
     ''';
   }
 }
