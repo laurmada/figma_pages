@@ -1,5 +1,6 @@
 import 'package:figma_screens/stores/create_account_store.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
 class Step1Page extends StatefulWidget {
@@ -44,8 +45,8 @@ class _Step1PageState extends State<Step1Page> {
         ),
       ),
       //Envolve o colum em um componente de scroll
-      body: SingleChildScrollView(
-        child: Column(
+      body: SingleChildScrollView(child: Observer(builder: (_) {
+        return Column(
           children: [
             Container(
               padding: const EdgeInsets.all(24),
@@ -255,7 +256,9 @@ class _Step1PageState extends State<Step1Page> {
                 style: ButtonStyle(
                   minimumSize: const MaterialStatePropertyAll(Size(327, 48)),
                   backgroundColor: MaterialStatePropertyAll(
-                      const Color(0xFF44454B).withOpacity(0.5)),
+                      createAccountStore.isValidForm
+                          ? const Color(0xFF0064D0)
+                          : const Color(0xFF44454B).withOpacity(0.5)),
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6),
                   )),
@@ -272,8 +275,8 @@ class _Step1PageState extends State<Step1Page> {
               ),
             ),
           ],
-        ),
-      ),
+        );
+      })),
     );
   }
 }
