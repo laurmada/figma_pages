@@ -1,8 +1,17 @@
+import 'package:figma_screens/stores/create_account_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class Step1Page extends StatelessWidget {
+class Step1Page extends StatefulWidget {
   const Step1Page({super.key});
+
+  @override
+  State<Step1Page> createState() => _Step1PageState();
+}
+
+class _Step1PageState extends State<Step1Page> {
+  CreateAccountStore createAccountStore = CreateAccountStore();
+  final emailController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -115,21 +124,22 @@ class Step1Page extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
-              padding: EdgeInsets.only(right: 24, left: 24, bottom: 24),
+            Padding(
+              padding: const EdgeInsets.only(right: 24, left: 24, bottom: 24),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Your e-mail',
+                  const Text('Your e-mail',
                       style: TextStyle(
                         color: Color(0xFFF0F0F1),
                         fontSize: 16,
                         fontFamily: 'Cabin',
                         fontWeight: FontWeight.w400,
                       )),
-                  SizedBox(height: 8),
+                  const SizedBox(height: 8),
                   TextField(
-                    decoration: InputDecoration(
+                    controller: emailController,
+                    decoration: const InputDecoration(
                       hintText: 'Email',
                       hintStyle: TextStyle(
                         color: Color(0xFF57585E),
@@ -178,7 +188,8 @@ class Step1Page extends StatelessWidget {
                       height: 16,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(2),
-                        border: Border.all(width: 2, color: const Color(0xFFC3C4C6)),
+                        border: Border.all(
+                            width: 2, color: const Color(0xFFC3C4C6)),
                       )),
                   const SizedBox(width: 10),
                   const Text(
@@ -237,7 +248,8 @@ class Step1Page extends StatelessWidget {
                 },
                 style: ButtonStyle(
                   minimumSize: const MaterialStatePropertyAll(Size(327, 48)),
-                  backgroundColor: MaterialStatePropertyAll(const Color(0xFF44454B).withOpacity(0.5)),
+                  backgroundColor: MaterialStatePropertyAll(
+                      const Color(0xFF44454B).withOpacity(0.5)),
                   shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(6),
                   )),
