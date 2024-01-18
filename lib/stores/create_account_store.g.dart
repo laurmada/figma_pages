@@ -9,6 +9,13 @@ part of 'create_account_store.dart';
 // ignore_for_file: non_constant_identifier_names, unnecessary_brace_in_string_interps, unnecessary_lambdas, prefer_expression_function_bodies, lines_longer_than_80_chars, avoid_as, avoid_annotating_with_dynamic, no_leading_underscores_for_local_identifiers
 
 mixin _$CreateAccountStore on _CreateAccountStore, Store {
+  Computed<bool>? _$isValidFormStep3Computed;
+
+  @override
+  bool get isValidFormStep3 => (_$isValidFormStep3Computed ??= Computed<bool>(
+          () => super.isValidFormStep3,
+          name: '_CreateAccountStore.isValidFormStep3'))
+      .value;
   Computed<bool>? _$isPhonenumberValidComputed;
 
   @override
@@ -93,6 +100,54 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
     });
   }
 
+  late final _$firstNameAtom =
+      Atom(name: '_CreateAccountStore.firstName', context: context);
+
+  @override
+  String get firstName {
+    _$firstNameAtom.reportRead();
+    return super.firstName;
+  }
+
+  @override
+  set firstName(String value) {
+    _$firstNameAtom.reportWrite(value, super.firstName, () {
+      super.firstName = value;
+    });
+  }
+
+  late final _$lastNameAtom =
+      Atom(name: '_CreateAccountStore.lastName', context: context);
+
+  @override
+  String get lastName {
+    _$lastNameAtom.reportRead();
+    return super.lastName;
+  }
+
+  @override
+  set lastName(String value) {
+    _$lastNameAtom.reportWrite(value, super.lastName, () {
+      super.lastName = value;
+    });
+  }
+
+  late final _$userNameAtom =
+      Atom(name: '_CreateAccountStore.userName', context: context);
+
+  @override
+  String get userName {
+    _$userNameAtom.reportRead();
+    return super.userName;
+  }
+
+  @override
+  set userName(String value) {
+    _$userNameAtom.reportWrite(value, super.userName, () {
+      super.userName = value;
+    });
+  }
+
   late final _$phonenumberAtom =
       Atom(name: '_CreateAccountStore.phonenumber', context: context);
 
@@ -162,6 +217,39 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
   }
 
   @override
+  void setUsername(String value) {
+    final _$actionInfo = _$_CreateAccountStoreActionController.startAction(
+        name: '_CreateAccountStore.setUsername');
+    try {
+      return super.setUsername(value);
+    } finally {
+      _$_CreateAccountStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setFirstname(String value) {
+    final _$actionInfo = _$_CreateAccountStoreActionController.startAction(
+        name: '_CreateAccountStore.setFirstname');
+    try {
+      return super.setFirstname(value);
+    } finally {
+      _$_CreateAccountStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setLastname(String value) {
+    final _$actionInfo = _$_CreateAccountStoreActionController.startAction(
+        name: '_CreateAccountStore.setLastname');
+    try {
+      return super.setLastname(value);
+    } finally {
+      _$_CreateAccountStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setPhonenumber(String value) {
     final _$actionInfo = _$_CreateAccountStoreActionController.startAction(
         name: '_CreateAccountStore.setPhonenumber');
@@ -189,8 +277,12 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
 email: ${email},
 password: ${password},
 isChecked: ${isChecked},
+firstName: ${firstName},
+lastName: ${lastName},
+userName: ${userName},
 phonenumber: ${phonenumber},
 selectedValue: ${selectedValue},
+isValidFormStep3: ${isValidFormStep3},
 isPhonenumberValid: ${isPhonenumberValid},
 isEmailValid: ${isEmailValid},
 isPasswordValid: ${isPasswordValid},

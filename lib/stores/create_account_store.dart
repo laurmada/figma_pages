@@ -25,6 +25,24 @@ abstract class _CreateAccountStore with Store {
   }
 
   @observable
+  String firstName = '';
+
+  @observable
+  String lastName = '';
+
+  @observable
+  String userName = '';
+
+  @action
+  void setUsername(String value) => userName = value;
+
+  @action
+  void setFirstname(String value) => firstName = value;
+
+  @action
+  void setLastname(String value) => lastName = value;
+
+  @observable
   String phonenumber = '';
 
   @action
@@ -32,6 +50,10 @@ abstract class _CreateAccountStore with Store {
 
   @observable
   String selectedValue = 'Brasil';
+
+  @computed
+  bool get isValidFormStep3 =>
+      userName.isNotEmpty && firstName.isNotEmpty && lastName.isNotEmpty;
 
   @action
   void setSelectedvalue(String value) => selectedValue = value;
