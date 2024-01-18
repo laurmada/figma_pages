@@ -52,6 +52,22 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
               name: '_CreateAccountStore.isValidForm'))
           .value;
 
+  late final _$isCheckedAtom =
+      Atom(name: '_CreateAccountStore.isChecked', context: context);
+
+  @override
+  bool get isChecked {
+    _$isCheckedAtom.reportRead();
+    return super.isChecked;
+  }
+
+  @override
+  set isChecked(bool value) {
+    _$isCheckedAtom.reportWrite(value, super.isChecked, () {
+      super.isChecked = value;
+    });
+  }
+
   late final _$emailAtom =
       Atom(name: '_CreateAccountStore.email', context: context);
 
@@ -81,22 +97,6 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
   set password(String value) {
     _$passwordAtom.reportWrite(value, super.password, () {
       super.password = value;
-    });
-  }
-
-  late final _$isCheckedAtom =
-      Atom(name: '_CreateAccountStore.isChecked', context: context);
-
-  @override
-  bool get isChecked {
-    _$isCheckedAtom.reportRead();
-    return super.isChecked;
-  }
-
-  @override
-  set isChecked(bool value) {
-    _$isCheckedAtom.reportWrite(value, super.isChecked, () {
-      super.isChecked = value;
     });
   }
 
@@ -148,22 +148,6 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
     });
   }
 
-  late final _$phonenumberAtom =
-      Atom(name: '_CreateAccountStore.phonenumber', context: context);
-
-  @override
-  String get phonenumber {
-    _$phonenumberAtom.reportRead();
-    return super.phonenumber;
-  }
-
-  @override
-  set phonenumber(String value) {
-    _$phonenumberAtom.reportWrite(value, super.phonenumber, () {
-      super.phonenumber = value;
-    });
-  }
-
   late final _$selectedValueAtom =
       Atom(name: '_CreateAccountStore.selectedValue', context: context);
 
@@ -180,8 +164,51 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
     });
   }
 
+  late final _$selectedGenderAtom =
+      Atom(name: '_CreateAccountStore.selectedGender', context: context);
+
+  @override
+  String get selectedGender {
+    _$selectedGenderAtom.reportRead();
+    return super.selectedGender;
+  }
+
+  @override
+  set selectedGender(String value) {
+    _$selectedGenderAtom.reportWrite(value, super.selectedGender, () {
+      super.selectedGender = value;
+    });
+  }
+
+  late final _$phonenumberAtom =
+      Atom(name: '_CreateAccountStore.phonenumber', context: context);
+
+  @override
+  String get phonenumber {
+    _$phonenumberAtom.reportRead();
+    return super.phonenumber;
+  }
+
+  @override
+  set phonenumber(String value) {
+    _$phonenumberAtom.reportWrite(value, super.phonenumber, () {
+      super.phonenumber = value;
+    });
+  }
+
   late final _$_CreateAccountStoreActionController =
       ActionController(name: '_CreateAccountStore', context: context);
+
+  @override
+  void toggleCheckbox() {
+    final _$actionInfo = _$_CreateAccountStoreActionController.startAction(
+        name: '_CreateAccountStore.toggleCheckbox');
+    try {
+      return super.toggleCheckbox();
+    } finally {
+      _$_CreateAccountStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void setEmail(String value) {
@@ -200,17 +227,6 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
         name: '_CreateAccountStore.setPassword');
     try {
       return super.setPassword(value);
-    } finally {
-      _$_CreateAccountStoreActionController.endAction(_$actionInfo);
-    }
-  }
-
-  @override
-  void toggleCheckbox() {
-    final _$actionInfo = _$_CreateAccountStoreActionController.startAction(
-        name: '_CreateAccountStore.toggleCheckbox');
-    try {
-      return super.toggleCheckbox();
     } finally {
       _$_CreateAccountStoreActionController.endAction(_$actionInfo);
     }
@@ -261,6 +277,17 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
   }
 
   @override
+  void setGendervalue(String value) {
+    final _$actionInfo = _$_CreateAccountStoreActionController.startAction(
+        name: '_CreateAccountStore.setGendervalue');
+    try {
+      return super.setGendervalue(value);
+    } finally {
+      _$_CreateAccountStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   void setSelectedvalue(String value) {
     final _$actionInfo = _$_CreateAccountStoreActionController.startAction(
         name: '_CreateAccountStore.setSelectedvalue');
@@ -274,14 +301,15 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
   @override
   String toString() {
     return '''
+isChecked: ${isChecked},
 email: ${email},
 password: ${password},
-isChecked: ${isChecked},
 firstName: ${firstName},
 lastName: ${lastName},
 userName: ${userName},
-phonenumber: ${phonenumber},
 selectedValue: ${selectedValue},
+selectedGender: ${selectedGender},
+phonenumber: ${phonenumber},
 isValidFormStep3: ${isValidFormStep3},
 isPhonenumberValid: ${isPhonenumberValid},
 isEmailValid: ${isEmailValid},

@@ -5,24 +5,13 @@ class CreateAccountStore = _CreateAccountStore with _$CreateAccountStore;
 
 abstract class _CreateAccountStore with Store {
   @observable
-  String email = '';
+  bool isChecked = false;
 
-  @action
-  void setEmail(String value) => email = value;
+  @observable
+  String email = '';
 
   @observable
   String password = '';
-
-  @action
-  void setPassword(String value) => password = value;
-
-  @observable
-  bool isChecked = false;
-
-  @action
-  void toggleCheckbox() {
-    isChecked = !isChecked;
-  }
 
   @observable
   String firstName = '';
@@ -33,6 +22,26 @@ abstract class _CreateAccountStore with Store {
   @observable
   String userName = '';
 
+  @observable
+  String selectedValue = '';
+
+  @observable
+  String selectedGender = '';
+
+  @observable
+  String phonenumber = '';
+
+  @action
+  void toggleCheckbox() {
+    isChecked = !isChecked;
+  }
+
+  @action
+  void setEmail(String value) => email = value;
+
+  @action
+  void setPassword(String value) => password = value;
+
   @action
   void setUsername(String value) => userName = value;
 
@@ -42,21 +51,18 @@ abstract class _CreateAccountStore with Store {
   @action
   void setLastname(String value) => lastName = value;
 
-  @observable
-  String phonenumber = '';
-
   @action
   void setPhonenumber(String value) => phonenumber = value;
 
-  @observable
-  String selectedValue = 'Brasil';
+  @action
+  void setGendervalue(String value) => selectedGender = value;
+
+  @action
+  void setSelectedvalue(String value) => selectedValue = value;
 
   @computed
   bool get isValidFormStep3 =>
       userName.isNotEmpty && firstName.isNotEmpty && lastName.isNotEmpty;
-
-  @action
-  void setSelectedvalue(String value) => selectedValue = value;
 
   @computed
   bool get isPhonenumberValid => RegExp(r'^[0-9]{11}$').hasMatch(phonenumber);

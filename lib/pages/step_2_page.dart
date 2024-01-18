@@ -139,7 +139,6 @@ class _Step2PageState extends State<Step2Page> {
                           )),
                       const SizedBox(height: 8),
                       DropdownButtonFormField(
-                        value: createAccountStore.selectedValue,
                         items: const [
                           DropdownMenuItem(
                               value: 'Brasil',
