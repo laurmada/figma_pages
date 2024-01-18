@@ -63,6 +63,22 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
     });
   }
 
+  late final _$isCheckedAtom =
+      Atom(name: '_CreateAccountStore.isChecked', context: context);
+
+  @override
+  bool get isChecked {
+    _$isCheckedAtom.reportRead();
+    return super.isChecked;
+  }
+
+  @override
+  set isChecked(bool value) {
+    _$isCheckedAtom.reportWrite(value, super.isChecked, () {
+      super.isChecked = value;
+    });
+  }
+
   late final _$_CreateAccountStoreActionController =
       ActionController(name: '_CreateAccountStore', context: context);
 
@@ -89,10 +105,22 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
   }
 
   @override
+  void toggleCheckbox() {
+    final _$actionInfo = _$_CreateAccountStoreActionController.startAction(
+        name: '_CreateAccountStore.toggleCheckbox');
+    try {
+      return super.toggleCheckbox();
+    } finally {
+      _$_CreateAccountStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 email: ${email},
 password: ${password},
+isChecked: ${isChecked},
 isEmailValid: ${isEmailValid},
 isPasswordValid: ${isPasswordValid},
 isValidForm: ${isValidForm}

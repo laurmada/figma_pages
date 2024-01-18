@@ -16,6 +16,14 @@ abstract class _CreateAccountStore with Store {
   @action
   void setPassword(String value) => password = value;
 
+  @observable
+  bool isChecked = false;
+
+  @action
+  void toggleCheckbox() {
+    isChecked = !isChecked;
+  }
+
   @computed
   bool get isEmailValid =>
       RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
@@ -25,5 +33,5 @@ abstract class _CreateAccountStore with Store {
   bool get isPasswordValid => password.length >= 8;
 
   @computed
-  bool get isValidForm => isEmailValid && isPasswordValid;
+  bool get isValidForm => isEmailValid && isPasswordValid && isChecked;
 }

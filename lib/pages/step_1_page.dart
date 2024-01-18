@@ -189,13 +189,21 @@ class _Step1PageState extends State<Step1Page> {
               child: Row(
                 children: [
                   Container(
-                      width: 16,
-                      height: 16,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(2),
-                        border: Border.all(
-                            width: 2, color: const Color(0xFFC3C4C6)),
-                      )),
+                    width: 16,
+                    height: 16,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(2),
+                      border:
+                          Border.all(width: 2, color: const Color(0xFFC3C4C6)),
+                    ),
+                    child: Checkbox(
+                      checkColor: Colors.white,
+                      value: createAccountStore.isChecked,
+                      onChanged: (bool? value) {
+                        createAccountStore.toggleCheckbox();
+                      },
+                    ),
+                  ),
                   const SizedBox(width: 10),
                   const Text(
                     "I agree with hub's",
@@ -263,10 +271,12 @@ class _Step1PageState extends State<Step1Page> {
                     borderRadius: BorderRadius.circular(6),
                   )),
                 ),
-                child: const Text(
+                child: Text(
                   'Next step',
                   style: TextStyle(
-                    color: Color(0xFFA5A5A9),
+                    color: createAccountStore.isValidForm
+                        ? Colors.white
+                        : const Color(0xFFA5A5A9),
                     fontFamily: 'Inter',
                     fontSize: 16,
                     fontWeight: FontWeight.w400,
