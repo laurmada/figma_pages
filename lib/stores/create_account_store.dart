@@ -24,6 +24,21 @@ abstract class _CreateAccountStore with Store {
     isChecked = !isChecked;
   }
 
+  @observable
+  String phonenumber = '';
+
+  @action
+  void setPhonenumber(String value) => phonenumber = value;
+
+  @observable
+  String selectedValue = 'Brasil';
+
+  @action
+  void setSelectedvalue(String value) => selectedValue = value;
+
+  @computed
+  bool get isPhonenumberValid => RegExp(r'^[0-9]{10}$').hasMatch(selectedValue);
+
   @computed
   bool get isEmailValid =>
       RegExp(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$')
