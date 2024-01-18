@@ -12,6 +12,7 @@ class Step2Page extends StatefulWidget {
 
 class _Step2PageState extends State<Step2Page> {
   CreateAccountStore createAccountStore = CreateAccountStore();
+  final phonenumberController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -144,6 +145,12 @@ class _Step2PageState extends State<Step2Page> {
                               'Brasil',
                               style: TextStyle(color: Color(0xFF78797D)),
                             )),
+                        DropdownMenuItem(
+                            value: 'Japão',
+                            child: Text(
+                              'Japão',
+                              style: TextStyle(color: Color(0xFF78797D)),
+                            )),
                       ],
                       onChanged: (value) {
                         createAccountStore.selectedValue.toString();
@@ -161,21 +168,25 @@ class _Step2PageState extends State<Step2Page> {
                   ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.only(bottom: 183, right: 24, left: 24),
+              Padding(
+                padding:
+                    const EdgeInsets.only(bottom: 183, right: 24, left: 24),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Phone number',
+                    const Text('Phone number',
                         style: TextStyle(
                           color: Color(0xFFF0F0F1),
                           fontSize: 16,
                           fontFamily: 'Cabin',
                           fontWeight: FontWeight.w400,
                         )),
-                    SizedBox(height: 8),
+                    const SizedBox(height: 8),
                     TextField(
-                      decoration: InputDecoration(
+                      keyboardType: TextInputType.number,
+                      onChanged: createAccountStore.setPhonenumber,
+                      controller: phonenumberController,
+                      decoration: const InputDecoration(
                         hintText: 'Sample +1 XXX XXX XXXX',
                         hintStyle: TextStyle(
                           color: Color(0xFF57585E),
@@ -192,20 +203,26 @@ class _Step2PageState extends State<Step2Page> {
                 padding: const EdgeInsets.all(24),
                 child: TextButton(
                   onPressed: () {
-                    Modular.to.navigate('/signup/step3');
+                    createAccountStore.isValidFormStep2
+                        ? Modular.to.navigate('/signup/step3')
+                        : null;
                   },
                   style: ButtonStyle(
                     minimumSize: const MaterialStatePropertyAll(Size(327, 48)),
                     backgroundColor: MaterialStatePropertyAll(
-                        const Color(0xFF44454B).withOpacity(0.5)),
+                        createAccountStore.isValidFormStep2
+                            ? const Color(0xFF0064D0)
+                            : const Color(0xFF44454B).withOpacity(0.5)),
                     shape: MaterialStatePropertyAll(RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(6),
                     )),
                   ),
-                  child: const Text(
+                  child: Text(
                     'Next step',
                     style: TextStyle(
-                      color: Color(0xFFA5A5A9),
+                      color: createAccountStore.isValidFormStep2
+                          ? Colors.white
+                          : const Color(0xFFA5A5A9),
                       fontFamily: 'Inter',
                       fontSize: 16,
                       fontWeight: FontWeight.w400,

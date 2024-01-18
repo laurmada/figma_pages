@@ -37,7 +37,7 @@ abstract class _CreateAccountStore with Store {
   void setSelectedvalue(String value) => selectedValue = value;
 
   @computed
-  bool get isPhonenumberValid => RegExp(r'^[0-9]{10}$').hasMatch(selectedValue);
+  bool get isPhonenumberValid => RegExp(r'^[0-9]{11}$').hasMatch(phonenumber);
 
   @computed
   bool get isEmailValid =>
@@ -46,6 +46,9 @@ abstract class _CreateAccountStore with Store {
 
   @computed
   bool get isPasswordValid => password.length >= 8;
+
+  @computed
+  bool get isValidFormStep2 => isPhonenumberValid;
 
   @computed
   bool get isValidForm => isEmailValid && isPasswordValid && isChecked;

@@ -30,6 +30,13 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
       (_$isPasswordValidComputed ??= Computed<bool>(() => super.isPasswordValid,
               name: '_CreateAccountStore.isPasswordValid'))
           .value;
+  Computed<bool>? _$isValidFormStep2Computed;
+
+  @override
+  bool get isValidFormStep2 => (_$isValidFormStep2Computed ??= Computed<bool>(
+          () => super.isValidFormStep2,
+          name: '_CreateAccountStore.isValidFormStep2'))
+      .value;
   Computed<bool>? _$isValidFormComputed;
 
   @override
@@ -187,6 +194,7 @@ selectedValue: ${selectedValue},
 isPhonenumberValid: ${isPhonenumberValid},
 isEmailValid: ${isEmailValid},
 isPasswordValid: ${isPasswordValid},
+isValidFormStep2: ${isValidFormStep2},
 isValidForm: ${isValidForm}
     ''';
   }
