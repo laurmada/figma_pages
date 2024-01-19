@@ -15,16 +15,15 @@ class _Step4PageState extends State<Step4Page> {
   Widget build(BuildContext context) {
     CreateAccountStore createAccountStore = CreateAccountStore();
 
-    void _Calendar(BuildContext context) async {
-      DateTime? selectedDate = await showDatePicker(
-        context: context,
-        firstDate: DateTime(2024),
-        lastDate: DateTime(2024),
-        initialDate: createAccountStore.selectedDate,
-      );
+    void calendar_() {
+      showDatePicker(
+          context: context,
+          initialDate: createAccountStore.selectedDate,
+          firstDate: DateTime(2000),
+          lastDate: DateTime(2025));
 
-      if (selectedDate != null) {
-        createAccountStore.setSelectedDate(selectedDate);
+      if (createAccountStore.selectedDate != null) {
+        createAccountStore.setSelectedDate(createAccountStore.selectedDate);
       }
     }
 
@@ -199,7 +198,7 @@ class _Step4PageState extends State<Step4Page> {
                         icon: IconButton(
                             icon: const Icon(Icons.calendar_month),
                             onPressed: () {
-                              _Calendar(context);
+                              calendar_();
                             }),
                       ),
                     ],
