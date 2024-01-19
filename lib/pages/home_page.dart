@@ -37,7 +37,9 @@ class HomePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    Modular.to.navigate('/signin/signinpage');
+                  },
                   style: ButtonStyle(
                     minimumSize: const MaterialStatePropertyAll(Size(327, 48)),
                     backgroundColor:

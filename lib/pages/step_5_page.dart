@@ -1,3 +1,4 @@
+import 'package:figma_screens/stores/create_account_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -7,6 +8,9 @@ class Step5Page extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    CreateAccountStore createAccountStore = CreateAccountStore();
+    final confirmEmailController = TextEditingController();
+
     return Scaffold(
       backgroundColor: const Color(0xFF27272C),
       appBar: AppBar(
@@ -108,11 +112,11 @@ class Step5Page extends StatelessWidget {
                 ],
               ),
             ),
-            const Padding(
+            Padding(
               padding: EdgeInsets.only(right: 24, left: 24, bottom: 24),
               child: Column(
                 children: [
-                  Text(
+                  const Text(
                     'Check your e-mail',
                     style: TextStyle(
                       color: Color(0xFFC3C4C6),
@@ -122,7 +126,9 @@ class Step5Page extends StatelessWidget {
                     ),
                   ),
                   TextField(
-                    decoration: InputDecoration(
+                    onChanged: createAccountStore.setConfirmemail,
+                    controller: confirmEmailController,
+                    decoration: const InputDecoration(
                       hintText: 'Fulano.beltrano@gmail.com',
                       hintStyle: TextStyle(
                         color: Colors.white,

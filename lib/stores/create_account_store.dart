@@ -31,6 +31,18 @@ abstract class _CreateAccountStore with Store {
   @observable
   String phonenumber = '';
 
+  @observable
+  DateTime selectedDate = DateTime.now();
+
+  @observable
+  String confirmEmail = '';
+
+  @action
+  void setConfirmemail(String value) => confirmEmail = value;
+
+  @action
+  void setSelectedDate(DateTime value) => selectedDate = value;
+
   @action
   void toggleCheckbox() {
     isChecked = !isChecked;

@@ -196,8 +196,62 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
     });
   }
 
+  late final _$selectedDateAtom =
+      Atom(name: '_CreateAccountStore.selectedDate', context: context);
+
+  @override
+  DateTime get selectedDate {
+    _$selectedDateAtom.reportRead();
+    return super.selectedDate;
+  }
+
+  @override
+  set selectedDate(DateTime value) {
+    _$selectedDateAtom.reportWrite(value, super.selectedDate, () {
+      super.selectedDate = value;
+    });
+  }
+
+  late final _$confirmEmailAtom =
+      Atom(name: '_CreateAccountStore.confirmEmail', context: context);
+
+  @override
+  String get confirmEmail {
+    _$confirmEmailAtom.reportRead();
+    return super.confirmEmail;
+  }
+
+  @override
+  set confirmEmail(String value) {
+    _$confirmEmailAtom.reportWrite(value, super.confirmEmail, () {
+      super.confirmEmail = value;
+    });
+  }
+
   late final _$_CreateAccountStoreActionController =
       ActionController(name: '_CreateAccountStore', context: context);
+
+  @override
+  void setConfirmemail(String value) {
+    final _$actionInfo = _$_CreateAccountStoreActionController.startAction(
+        name: '_CreateAccountStore.setConfirmemail');
+    try {
+      return super.setConfirmemail(value);
+    } finally {
+      _$_CreateAccountStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setSelectedDate(DateTime value) {
+    final _$actionInfo = _$_CreateAccountStoreActionController.startAction(
+        name: '_CreateAccountStore.setSelectedDate');
+    try {
+      return super.setSelectedDate(value);
+    } finally {
+      _$_CreateAccountStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void toggleCheckbox() {
@@ -310,6 +364,8 @@ userName: ${userName},
 selectedValue: ${selectedValue},
 selectedGender: ${selectedGender},
 phonenumber: ${phonenumber},
+selectedDate: ${selectedDate},
+confirmEmail: ${confirmEmail},
 isValidFormStep3: ${isValidFormStep3},
 isPhonenumberValid: ${isPhonenumberValid},
 isEmailValid: ${isEmailValid},

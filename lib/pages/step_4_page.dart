@@ -3,12 +3,30 @@ import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 
-class Step4Page extends StatelessWidget {
+class Step4Page extends StatefulWidget {
   const Step4Page({super.key});
 
   @override
+  State<Step4Page> createState() => _Step4PageState();
+}
+
+class _Step4PageState extends State<Step4Page> {
+  @override
   Widget build(BuildContext context) {
     CreateAccountStore createAccountStore = CreateAccountStore();
+
+    void _Calendar(BuildContext context) async {
+      DateTime? selectedDate = await showDatePicker(
+        context: context,
+        firstDate: DateTime(2024),
+        lastDate: DateTime(2024),
+        initialDate: createAccountStore.selectedDate,
+      );
+
+      if (selectedDate != null) {
+        createAccountStore.setSelectedDate(selectedDate);
+      }
+    }
 
     return Scaffold(
         backgroundColor: const Color(0xFF27272C),
@@ -178,7 +196,11 @@ class Step4Page extends StatelessWidget {
                               fontSize: 16,
                               fontWeight: FontWeight.w400),
                         ),
-                        icon: const Icon(Icons.calendar_month),
+                        icon: IconButton(
+                            icon: const Icon(Icons.calendar_month),
+                            onPressed: () {
+                              _Calendar(context);
+                            }),
                       ),
                     ],
                   ),
