@@ -41,6 +41,9 @@ dependencies:
   mobx_codegen: ^2.6.0+1
   disposer: ^0.0.8
   flutter_mobx: ^2.2.0+2
+  cloud_firestore: ^4.14.0
+  firebase_auth: ^4.16.0
+  firebase_core: ^2.24.2
 
 
 dev_dependencies:

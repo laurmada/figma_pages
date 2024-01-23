@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 part 'create_account_store.g.dart';
 
@@ -36,6 +37,20 @@ abstract class _CreateAccountStore with Store {
 
   @observable
   String confirmEmail = '';
+
+  final emailController = TextEditingController();
+
+  final passwordController = TextEditingController();
+
+  final phonenumberController = TextEditingController();
+
+  final userNameController = TextEditingController();
+
+  final firstNameController = TextEditingController();
+
+  final lastNameController = TextEditingController();
+
+  final confirmEmailController = TextEditingController();
 
   @action
   void setConfirmemail(String value) => confirmEmail = value;
