@@ -24,19 +24,18 @@ mixin _$SigninStore on _SigninStore, Store {
               name: '_SigninStore.isformValid'))
           .value;
 
-  late final _$usernameAtom =
-      Atom(name: '_SigninStore.username', context: context);
+  late final _$emailAtom = Atom(name: '_SigninStore.email', context: context);
 
   @override
-  String get username {
-    _$usernameAtom.reportRead();
-    return super.username;
+  String get email {
+    _$emailAtom.reportRead();
+    return super.email;
   }
 
   @override
-  set username(String value) {
-    _$usernameAtom.reportWrite(value, super.username, () {
-      super.username = value;
+  set email(String value) {
+    _$emailAtom.reportWrite(value, super.email, () {
+      super.email = value;
     });
   }
 
@@ -84,7 +83,7 @@ mixin _$SigninStore on _SigninStore, Store {
   @override
   String toString() {
     return '''
-username: ${username},
+email: ${email},
 password: ${password},
 isPasswordValid: ${isPasswordValid},
 isformValid: ${isformValid}

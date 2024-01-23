@@ -22,9 +22,7 @@ class _Step4PageState extends State<Step4Page> {
           firstDate: DateTime(2000),
           lastDate: DateTime(2025));
 
-      if (createAccountStore.selectedDate != null) {
-        createAccountStore.setSelectedDate(createAccountStore.selectedDate);
-      }
+      createAccountStore.setSelectedDate(createAccountStore.selectedDate);
     }
 
     return Scaffold(

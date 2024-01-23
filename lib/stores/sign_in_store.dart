@@ -6,13 +6,13 @@ class SigninStore = _SigninStore with _$SigninStore;
 
 abstract class _SigninStore with Store {
   @observable
-  String username = '';
+  String email = '';
 
   @observable
   String password = '';
 
   @action
-  void setUsername(String value) => username = value;
+  void setUsername(String value) => email = value;
 
   @action
   void setPassword(String value) => password = value;
@@ -25,5 +25,5 @@ abstract class _SigninStore with Store {
   bool get isPasswordValid => password.length >= 8;
 
   @computed
-  bool get isformValid => isPasswordValid && username.isNotEmpty;
+  bool get isformValid => isPasswordValid && email.isNotEmpty;
 }

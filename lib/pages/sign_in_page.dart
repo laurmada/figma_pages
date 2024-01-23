@@ -1,4 +1,4 @@
-import 'package:figma_screens/services/auth_service.dart';
+import 'package:figma_screens/authentication/auth_manager.dart';
 import 'package:figma_screens/stores/sign_in_store.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
@@ -13,17 +13,7 @@ class SignInPage extends StatefulWidget {
 
 class _SignInPageState extends State<SignInPage> {
   SigninStore signinStore = SigninStore();
-
-  /*login() async {
-    try {
-      await context
-          .read<AuthService>()
-          .login(signinStore.username, signinStore.password);
-    } on AuthException catch (e) {
-      ScaffoldMessenger.of(context)
-          .showSnackBar(SnackBar(content: Text(e.message)));
-    }
-  }*/
+  AuthManager authManager = AuthManager();
 
   @override
   Widget build(BuildContext context) {
@@ -91,7 +81,7 @@ class _SignInPageState extends State<SignInPage> {
                             onChanged: signinStore.setUsername,
                             decoration: const InputDecoration(
                               prefixIcon: Icon(Icons.people),
-                              hintText: 'Type your username',
+                              hintText: 'Type your email',
                               hintStyle: TextStyle(
                                 color: Color(0xFF57585E),
                                 fontSize: 16,
@@ -141,7 +131,10 @@ class _SignInPageState extends State<SignInPage> {
                       child: Column(
                         children: [
                           TextButton(
-                            onPressed: () {},
+                            onPressed: () async {
+                              await authManager.signInWithEmailandPassword(
+                                  signinStore.email, signinStore.password);
+                            },
                             style: ButtonStyle(
                               minimumSize:
                                   const MaterialStatePropertyAll(Size(327, 48)),
@@ -177,6 +170,7 @@ class _SignInPageState extends State<SignInPage> {
                         children: [
                           OutlinedButton(
                             onPressed: () {
+                              authManager.signout();
                               Modular.to.navigate('/signup/step1');
                             },
                             style: ButtonStyle(

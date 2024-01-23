@@ -1,4 +1,4 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:figma_screens/authentication/auth_manager.dart';
 import 'package:figma_screens/stores/create_account_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -18,25 +18,7 @@ class _Step1PageState extends State<Step1Page> {
 
   @override
   Widget build(BuildContext context) {
-    /*final FirebaseAuth _auth = FirebaseAuth.instance;
-    final FirebaseFirestore _fireStore = FirebaseFirestore.instance;
-
-    void _createUserwithEmailandPassword() async {
-      try {
-        UserCredential userCredential =
-            await _auth.createUserWithEmailAndPassword(
-                email: createAccountStore.email,
-                password: createAccountStore.password);
-        user = userCredential.user;
-      } catch (e) {
-        print('fail');
-      }
-
-      await _fireStore
-          .collection('users')
-          .doc(user.uid)
-          .set({'email': user.email});
-    }*/
+    final AuthManager authmanager = AuthManager();
 
     return Scaffold(
       backgroundColor: const Color(0xFF27272C),
@@ -281,10 +263,11 @@ class _Step1PageState extends State<Step1Page> {
                   Padding(
                     padding: const EdgeInsets.all(24),
                     child: TextButton(
-                      onPressed: () {
-                        createAccountStore.isValidForm
-                            ? Modular.to.navigate('/signup/step2')
-                            : null;
+                      onPressed: () async {
+                        await authmanager.createUserEmailAndPassword(
+                            createAccountStore.email,
+                            createAccountStore.password);
+                        Modular.to.navigate('/signup/step2');
                       },
                       style: ButtonStyle(
                         minimumSize:
