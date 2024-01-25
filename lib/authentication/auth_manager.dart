@@ -1,8 +1,10 @@
+import 'package:figma_screens/stores/create_account_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthManager {
   // creating firebaseauth instance
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  CreateAccountStore createAccountStore = CreateAccountStore();
 
   // declaring variable type User
   User? user;
@@ -21,6 +23,14 @@ class AuthManager {
         print('The account already exits for that email.');
       }
     }
+  }
+
+  String getUID() {
+    return user?.uid ?? '';
+  }
+
+  Future<void> refreshUser() async {
+    user = await _auth.currentUser;
   }
 
   Future<void> signInWithEmailandPassword(String email, String password) async {

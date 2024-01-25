@@ -189,7 +189,7 @@ class _Step4PageState extends State<Step4Page> {
                               items: const [],
                               onChanged: (_) {},
                               hint: const Text(
-                                'Enter your birthday date',
+                                'Enter your birthday',
                                 style: TextStyle(
                                     fontFamily: 'Cabin',
                                     color: Color(0xFF78797D),
@@ -208,7 +208,8 @@ class _Step4PageState extends State<Step4Page> {
                       Padding(
                         padding: const EdgeInsets.all(24),
                         child: TextButton(
-                          onPressed: () {
+                          onPressed: () async {
+                            await createAccountStore.saveUserData();
                             Modular.to.navigate('/signup/step5');
                           },
                           style: ButtonStyle(

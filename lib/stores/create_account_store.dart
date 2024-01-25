@@ -1,8 +1,11 @@
+import 'package:figma_screens/database/firestore_service.dart';
 import 'package:flutter/material.dart';
 import 'package:mobx/mobx.dart';
 part 'create_account_store.g.dart';
 
 class CreateAccountStore = _CreateAccountStore with _$CreateAccountStore;
+
+final FirestoreService firestoreService = FirestoreService();
 
 abstract class _CreateAccountStore with Store {
   @observable
@@ -107,4 +110,10 @@ abstract class _CreateAccountStore with Store {
 
   @computed
   bool get isValidForm => isEmailValid && isPasswordValid && isChecked;
+
+  @action
+  Future<void> saveUserData() async {
+    await firestoreService.saveUser(email, password, selectedValue, phonenumber,
+        userName, firstName, lastName, selectedGender, selectedDate);
+  }
 }

@@ -212,10 +212,11 @@ class Step3Page extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.all(24),
                         child: TextButton(
-                          onPressed: () {
-                            createAccountStore.isValidFormStep3
-                                ? Modular.to.navigate('/signup/step4')
-                                : null;
+                          onPressed: () async {
+                            if (createAccountStore.isValidFormStep3) {
+                              await createAccountStore.saveUserData();
+                              Modular.to.navigate('/signup/step4');
+                            }
                           },
                           style: ButtonStyle(
                             minimumSize:

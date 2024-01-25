@@ -194,10 +194,11 @@ class _Step2PageState extends State<Step2Page> {
               Padding(
                 padding: const EdgeInsets.all(24),
                 child: TextButton(
-                  onPressed: () {
-                    createAccountStore.isValidFormStep2
-                        ? Modular.to.navigate('/signup/step3')
-                        : null;
+                  onPressed: () async {
+                    if (createAccountStore.isValidFormStep2) {
+                      await createAccountStore.saveUserData();
+                      Modular.to.navigate('/signup/step3');
+                    }
                   },
                   style: ButtonStyle(
                     minimumSize: const MaterialStatePropertyAll(Size(327, 48)),

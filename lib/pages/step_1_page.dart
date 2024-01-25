@@ -1,6 +1,8 @@
 import 'package:figma_screens/authentication/auth_manager.dart';
+import 'package:figma_screens/database/firestore_service.dart';
 import 'package:figma_screens/stores/create_account_store.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -13,12 +15,20 @@ class Step1Page extends StatefulWidget {
 }
 
 class _Step1PageState extends State<Step1Page> {
-  CreateAccountStore createAccountStore = CreateAccountStore();
+  final CreateAccountStore createAccountStore = CreateAccountStore();
+  final AuthManager authmanager = AuthManager();
+  final FirestoreService firestoreService = FirestoreService();
   User? user;
 
   @override
   Widget build(BuildContext context) {
-    final AuthManager authmanager = AuthManager();
+    String? uid = authmanager.getUID();
+
+    final userAccount = <String, dynamic>{
+      "email": createAccountStore.email,
+      "password": createAccountStore.password,
+      "uid": uid,
+    };
 
     return Scaffold(
       backgroundColor: const Color(0xFF27272C),
@@ -267,6 +277,15 @@ class _Step1PageState extends State<Step1Page> {
                         await authmanager.createUserEmailAndPassword(
                             createAccountStore.email,
                             createAccountStore.password);
+                        await createAccountStore.saveUserData();
+                        /*DatabaseReference userRef = FirebaseDatabase.instance
+                            .ref("users")
+                            .child(authmanager.getUID());
+                        Map<String, dynamic> userData = {
+                          "email": createAccountStore.email,
+                          "password": createAccountStore.password
+                        };
+                        await userRef.set(userData);*/
                         Modular.to.navigate('/signup/step2');
                       },
                       style: ButtonStyle(

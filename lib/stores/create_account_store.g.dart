@@ -228,6 +228,14 @@ mixin _$CreateAccountStore on _CreateAccountStore, Store {
     });
   }
 
+  late final _$saveUserDataAsyncAction =
+      AsyncAction('_CreateAccountStore.saveUserData', context: context);
+
+  @override
+  Future<void> saveUserData() {
+    return _$saveUserDataAsyncAction.run(() => super.saveUserData());
+  }
+
   late final _$_CreateAccountStoreActionController =
       ActionController(name: '_CreateAccountStore', context: context);
 
