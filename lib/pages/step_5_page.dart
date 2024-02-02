@@ -1,4 +1,9 @@
 import 'package:figma_screens/stores/create_account_store.dart';
+import 'package:figma_screens/widgets/custom_appbar.dart';
+import 'package:figma_screens/widgets/custom_progressstep_bar.dart';
+import 'package:figma_screens/widgets/custom_signup_button.dart';
+import 'package:figma_screens/widgets/custom_textfield.dart';
+import 'package:figma_screens/widgets/custom_texticon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -13,134 +18,69 @@ class Step5Page extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: const Color(0xFF27272C),
-      appBar: AppBar(
-        elevation: 0,
-        surfaceTintColor: Colors.transparent,
+      appBar: CustomAppbar(
+        onPressed: () {
+          Modular.to.navigate('/');
+        },
         backgroundColor: const Color(0xFF27272C),
-        title: Row(
-          children: [
-            IconButton(
-              onPressed: () {
-                Modular.to.navigate('/signup/step4');
-              },
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
-            ),
-            const Text(
-              'Voltar',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'Cabin',
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
+        elevation: 0,
+        surfaceTint: Colors.transparent,
+        textInput: 'Voltar',
+        icon: const Icon(Icons.arrow_back, color: Colors.white),
+        fontColor: Colors.white,
+        fontFamily: 'Cabin',
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
       ),
       body: Observer(
         builder: (context) => SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Padding(
+              CustomProgressStepBar(
+                scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.all(24),
-                child: SingleChildScrollView(
-                  scrollDirection: Axis.horizontal,
-                  child: Row(
-                    children: [
-                      Container(
-                        width: 74.25,
-                        height: 4,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(2),
-                          color: const Color(0xFFF49819),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 74.25,
-                        height: 4,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(2),
-                          color: const Color(0xFFF49819),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 74.25,
-                        height: 4,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(2),
-                          color: const Color(0xFFF49819),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Container(
-                        width: 74.25,
-                        height: 4,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(2),
-                          color: const Color(0xFFF49819),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
+                width: 74.25,
+                height: 4,
+                borderRadius: BorderRadius.circular(2),
+                color_1: const Color(0xFFF49819),
+                color_2: const Color(0xFFF49819),
+                color_3: const Color(0xFFF49819),
+                color_4: const Color(0xFFF49819),
+                sizedBoxWidth: 10,
               ),
               Padding(
                 padding: const EdgeInsets.only(bottom: 24, right: 24, left: 24),
-                child: Column(
-                  children: [
-                    SvgPicture.asset(
-                      'assets/icons/Email.svg',
-                    ),
-                    const Text(
-                      'Your account has been\ncreated successfully',
-                      style: TextStyle(
-                        color: Color(0xFFF49819),
-                        fontSize: 26,
-                        fontFamily: 'Cabin',
-                        fontWeight: FontWeight.w700,
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                child: CustomTextIcon(
+                  svgPicture: SvgPicture.asset(
+                    'assets/icons/Email.svg',
+                  ),
+                  inputText: 'Your account has been\ncreated successfully',
+                  fontColor: const Color(0xFFF49819),
+                  fontSize: 26,
+                  fontWeight: FontWeight.w700,
+                  textAlign: TextAlign.center,
+                  fontFamily: 'Cabin',
                 ),
               ),
               Padding(
                 padding: const EdgeInsets.only(right: 24, left: 24, bottom: 24),
-                child: Column(
-                  children: [
-                    const Text(
-                      'Check your e-mail',
-                      style: TextStyle(
-                        color: Color(0xFFC3C4C6),
-                        fontFamily: 'Cabin',
-                        fontWeight: FontWeight.w400,
-                        fontSize: 16,
-                      ),
-                    ),
-                    TextField(
-                      onChanged: createAccountStore.setConfirmemail,
-                      controller: createAccountStore.confirmEmailController,
-                      decoration: const InputDecoration(
-                        hintText: 'Fulano.beltrano@gmail.com',
-                        hintStyle: TextStyle(
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontFamily: 'Cabin',
-                          fontWeight: FontWeight.w400,
-                        ),
-                      ),
-                      textAlign: TextAlign.center,
-                    ),
-                  ],
+                child: CustomTextfield(
+                  onChanged: createAccountStore.setConfirmemail,
+                  controller: createAccountStore.confirmEmailController,
+                  hintColor: Colors.white,
+                  hintFamily: 'Cabin',
+                  hintSize: 20,
+                  hintWeight: FontWeight.w400,
+                  hintText: 'Fulano.beltrano@gmail.com',
+                  obscure: false,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  textInput: 'Check your e-mail',
+                  fontColor: const Color(0xFFC3C4C6),
+                  fontSize: 20,
+                  fontWeight: FontWeight.w400,
+                  fontFamily: 'Cabin',
+                  textAlign: TextAlign.center,
                 ),
               ),
               const Padding(
@@ -176,25 +116,16 @@ class Step5Page extends StatelessWidget {
                       ),
                     ),
                     const SizedBox(height: 8),
-                    OutlinedButton(
-                      onPressed: () {},
-                      style: ButtonStyle(
-                        minimumSize:
-                            MaterialStateProperty.all(const Size(327, 48)),
-                        shape: MaterialStatePropertyAll(RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(6),
-                        )),
-                      ),
-                      child: const Text(
-                        'Send again',
-                        style: TextStyle(
-                          color: Color(0xFFA5A5A9),
-                          fontFamily: 'Inter',
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                        ),
-                      ),
-                    ),
+                    CustomSignUpButton(
+                        width: 327,
+                        height: 48,
+                        borderRadius: BorderRadius.circular(6),
+                        inputText: 'Send Again',
+                        fontFamily: 'Inter',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w600,
+                        fontColor: const Color(0xFFA5A5A9),
+                        onPressed: () {}),
                   ],
                 ),
               ),

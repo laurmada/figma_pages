@@ -1,5 +1,9 @@
 import 'package:figma_screens/authentication/auth_manager.dart';
 import 'package:figma_screens/stores/sign_in_store.dart';
+import 'package:figma_screens/widgets/custom_appbar.dart';
+import 'package:figma_screens/widgets/custom_signup_button.dart';
+import 'package:figma_screens/widgets/custom_signin_button.dart';
+import 'package:figma_screens/widgets/custom_textfield.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
@@ -19,29 +23,19 @@ class _SignInPageState extends State<SignInPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: const Color(0xFF27272C),
-      appBar: AppBar(
-        surfaceTintColor: Colors.transparent,
-        elevation: 0,
+      appBar: CustomAppbar(
+        onPressed: () {
+          Modular.to.navigate('/');
+        },
         backgroundColor: const Color(0xFF27272C),
-        title: Row(
-          children: [
-            IconButton(
-              onPressed: () {
-                Modular.to.navigate('/');
-              },
-              icon: const Icon(Icons.arrow_back, color: Colors.white),
-            ),
-            const Text(
-              'Voltar',
-              style: TextStyle(
-                color: Colors.white,
-                fontFamily: 'Cabin',
-                fontSize: 16,
-                fontWeight: FontWeight.w700,
-              ),
-            ),
-          ],
-        ),
+        elevation: 0,
+        surfaceTint: Colors.transparent,
+        textInput: 'Voltar',
+        icon: const Icon(Icons.arrow_back, color: Colors.white),
+        fontColor: Colors.white,
+        fontFamily: 'Cabin',
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
       ),
       body: Observer(
           builder: (context) => SingleChildScrollView(
@@ -62,137 +56,83 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                     Padding(
                       padding: const EdgeInsets.all(24),
-                      child: Column(
-                        children: [
-                          const Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                'Username',
-                                style: TextStyle(
-                                  color: Color(0xFFF0F0F1),
-                                  fontSize: 16,
-                                  fontFamily: 'Cabin',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              )),
-                          const SizedBox(height: 8),
-                          TextField(
-                            controller: signinStore.usernameController,
-                            onChanged: signinStore.setUsername,
-                            decoration: const InputDecoration(
-                              prefixIcon: Icon(Icons.people),
-                              hintText: 'Type your email',
-                              hintStyle: TextStyle(
-                                color: Color(0xFF57585E),
-                                fontSize: 16,
-                                fontFamily: 'Cabin',
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ],
+                      child: CustomTextfield(
+                        onChanged: signinStore.setUsername,
+                        controller: signinStore.usernameController,
+                        prefixIcon: const Icon(Icons.people),
+                        obscure: false,
+                        hintColor: const Color(0xFF57585E),
+                        hintFamily: 'Cabin',
+                        hintSize: 16,
+                        hintWeight: FontWeight.w400,
+                        hintText: 'Type your email',
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        textInput: 'Email',
+                        fontColor: const Color(0xFFF0F0F1),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'Cabin',
+                        sizedBoxHeight: 8,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(24),
-                      child: Column(
-                        children: [
-                          const Align(
-                              alignment: Alignment.topLeft,
-                              child: Text(
-                                'Password',
-                                style: TextStyle(
-                                  color: Color(0xFFF0F0F1),
-                                  fontSize: 16,
-                                  fontFamily: 'Cabin',
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              )),
-                          const SizedBox(height: 8),
-                          TextField(
-                            controller: signinStore.passswordController,
-                            onChanged: signinStore.setPassword,
-                            decoration: const InputDecoration(
-                              hintText: 'Type your password',
-                              prefixIcon: Icon(Icons.lock),
-                              hintStyle: TextStyle(
-                                color: Color(0xFF57585E),
-                                fontSize: 16,
-                                fontFamily: 'Cabin',
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ],
+                      child: CustomTextfield(
+                        onChanged: signinStore.setPassword,
+                        controller: signinStore.passswordController,
+                        prefixIcon: const Icon(Icons.lock),
+                        obscure: false,
+                        hintColor: const Color(0xFF57585E),
+                        hintFamily: 'Cabin',
+                        hintSize: 16,
+                        hintWeight: FontWeight.w400,
+                        hintText: 'Type your password',
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        textInput: 'Password',
+                        fontColor: const Color(0xFFF0F0F1),
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: 'Cabin',
+                        sizedBoxHeight: 8,
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.all(24),
-                      child: Column(
-                        children: [
-                          TextButton(
-                            onPressed: () async {
-                              await authManager.signInWithEmailandPassword(
-                                  signinStore.email, signinStore.password);
-                            },
-                            style: ButtonStyle(
-                              minimumSize:
-                                  const MaterialStatePropertyAll(Size(327, 48)),
-                              backgroundColor: MaterialStatePropertyAll(
-                                  signinStore.isformValid
-                                      ? const Color(0xFF0064D0)
-                                      : const Color(0xFF44454B)
-                                          .withOpacity(0.5)),
-                              shape: MaterialStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6),
-                              )),
-                            ),
-                            child: Text(
-                              'Sign in',
-                              style: TextStyle(
-                                color: signinStore.isformValid
-                                    ? Colors.white
-                                    : const Color(0xFFA5A5A9),
-                                fontFamily: 'Inter',
-                                fontSize: 16,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ],
+                      child: CustomSignInButton(
+                        borderRadius: 6,
+                        buttonColor: signinStore.isformValid
+                            ? const Color(0xFF0064D0)
+                            : const Color(0xFF44454B),
+                        isDisabled: false,
+                        disabledColor: const Color(0xFF44454B).withOpacity(0.5),
+                        width: 327,
+                        height: 48,
+                        buttonText: 'Sign In',
+                        fontSize: 16,
+                        fontWeight: FontWeight.w400,
+                        fontFamily: "Inter",
+                        textDisabledColor: const Color(0xFFA5A5A9),
+                        textColor: signinStore.isformValid
+                            ? Colors.white
+                            : const Color(0xFFA5A5A9),
+                        onPressed: () {},
                       ),
                     ),
                     Padding(
                       padding: const EdgeInsets.only(
                           bottom: 24, right: 24, left: 24),
-                      child: Column(
-                        children: [
-                          OutlinedButton(
-                            onPressed: () {
-                              authManager.signout();
-                              Modular.to.navigate('/signup/step1');
-                            },
-                            style: ButtonStyle(
-                              minimumSize: MaterialStateProperty.all(
-                                  const Size(327, 48)),
-                              shape: MaterialStatePropertyAll(
-                                  RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(6),
-                              )),
-                            ),
-                            child: const Text(
-                              'Sign up',
-                              style: TextStyle(
-                                color: Color(0xFFA5A5A9),
-                                fontFamily: 'Inter',
-                                fontWeight: FontWeight.w600,
-                                fontSize: 16,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
+                      child: CustomSignUpButton(
+                          width: 327,
+                          height: 48,
+                          borderRadius: BorderRadius.circular(6),
+                          inputText: 'Sign Up',
+                          fontFamily: 'Inter',
+                          fontSize: 16,
+                          fontWeight: FontWeight.w400,
+                          fontColor: const Color(0xFFA5A5A9),
+                          onPressed: () {
+                            Modular.to.navigate('/signup/step1');
+                          }),
                     )
                   ],
                 ),
